@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surat Buat Edee Sayang</title>
+<style>
+body{font-family:'Segoe UI',sans-serif;background:#FFF8F0;margin:0;padding:15px;display:flex;justify-content:center}
+.container{max-width:500px;width:100%}
+h1{text-align:center;color:#FF6B6B}
+.card{background:white;padding:14px 16px;border-radius:18px;margin-bottom:12px;box-shadow:0 3px 10px rgba(0,0,0,0.08);animation:muncul .3s}
+.card.aku{border-left:6px solid #FF8A65}
+.card.edee{border-left:6px solid #F48FB1;background:#FFF5F8}
+@keyframes muncul{from{transform:translateY(10px);opacity:0}to{transform:translateY(0);opacity:1}}
+.waktu{font-size:11px;color:#999;margin-bottom:4px}
+.isi{white-space:pre-wrap;line-height:1.5}
+textarea{width:100%;height:90px;border-radius:14px;padding:12px;border:2px solid #FFE0D6;box-sizing:border-box;outline:none}
+textarea:focus{border-color:#FF8A65}
+.btns{display:flex;gap:8px;margin-top:10px}
+.btn{flex:1;padding:13px;border:none;border-radius:25px;font-weight:bold;color:white;cursor:pointer}
+.btn-aku{background:linear-gradient(135deg,#FF8A65,#FF6B6B)}
+.btn-edee{background:linear-gradient(135deg,#F48FB1,#CE93D8)}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>💌 Buat Edee 🤍</h1>
+<div id="daftar">Memuat surat kita...</div>
+<textarea id="pesan" placeholder="Tulis surat cinta di sini sayang..."></textarea>
+<div class="btns">
+<button class="btn btn-aku" onclick="kirim('Aku')">Aku 🧡</button>
+<button class="btn btn-edee" onclick="kirim('Edee')">Edee 💖</button>
+</div>
+<p style="text-align:center;font-size:12px;color:#aaa;margin-top:15px">Kirim pakai tombol sesuai namamu ya</p>
+</div>
+<script>
+const API = "https://api.npoint.io/13ac18bcf38f87367bfa";
+async function load(){
+  try{
+    const r = await fetch(API);
+    const d = await r.json();
+    const list = d.surat || [];
+    document.getElementById('daftar').innerHTML = list.slice().reverse().map(s=>`
+      <div class="card ${s.pengirim==='Edee'?'edee':'aku'}">
+        <div class="waktu">${s.pengirim==='Edee'?'💖 Edee':'🧡 Aku'} • ${s.waktu}</div>
+        <div class="isi">${s.isi.replace(/</g,'&lt;')}</div>
+      </div>
+    `).join('') || '<p style="text-align:center;color:#999">Belum ada surat, tulis pertama yuk!</p>';
+  }catch(e){document.getElementById('daftar').innerHTML='Gagal memuat, refresh ya';}
+}
+async function kirim(pengirim){
+  const el = document.getElementById('pesan');
+  const isi = el.value.trim();
+  if(!isi) return alert("Tulis dulu suratnya sayang!");
+  const waktu = new Date().toLocaleString('id-ID',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'});
+  el.value='Mengirim...'; el.disabled=true;
+  try{
+    const r = await fetch(API);
+    const d = await r.json();
+    d.surat.push({pengirim, isi, waktu});
+    await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+    el.value=''; load();
+  }catch(e){alert('Gagal kirim, coba lagi'); el.value=isi;}
+  el.disabled=false;
+}
+load(); setInterval(load,4000);
+</script>
+</body>
+</html>
