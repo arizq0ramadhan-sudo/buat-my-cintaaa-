@@ -7,25 +7,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
 <style>
   body{margin:0;background:#FFF8E7;font-family:'Quicksand',sans-serif;min-height:100vh}
- .header{background:linear-gradient(135deg,#FF8A4C,#FF5C7A);color:white;padding:30px 20px 40px;text-align:center;border-radius:0 0 30px 30px;box-shadow:0 8px 20px rgba(255,92,122,.3)}
- .header h1{font-family:'Caveat',cursive;font-size:32px;margin:0;line-height:1.2}
- .header p{opacity:.95;margin:10px 0 0;font-size:14px;line-height:1.4}
- .container{max-width:420px;margin:-20px auto 0;padding:20px}
- .badge{display:block;text-align:center;background:#FFE0D6;color:#BF360C;padding:8px;border-radius:20px;font-size:11px;margin-bottom:12px;font-weight:600}
- .card{background:white;padding:18px;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.06);margin-bottom:16px;border-left:6px solid #FFB86C}
- .date{font-size:11px;color:#FF8A4C;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
- .isi{font-size:14px;line-height:1.6;color:#444;white-space:pre-wrap}
- .write-box{background:white;padding:20px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.08);border:2px dashed #FFC99A;position:sticky;bottom:20px}
+.header{background:linear-gradient(135deg,#FF8A4C,#FF5C7A);color:white;padding:30px 20px 40px;text-align:center;border-radius:0 0 30px 30px;box-shadow:0 8px 20px rgba(255,92,122,.3)}
+.header h1{font-family:'Caveat',cursive;font-size:32px;margin:0;line-height:1.2}
+.header p{opacity:.95;margin:10px 0 0;font-size:14px;line-height:1.4}
+.container{max-width:420px;margin:-20px auto 0;padding:20px}
+.badge{display:block;text-align:center;background:#FFE0D6;color:#BF360C;padding:8px;border-radius:20px;font-size:11px;margin-bottom:12px;font-weight:600}
+.card{background:white;padding:18px;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.06);margin-bottom:16px;border-left:6px solid #FFB86C}
+.date{font-size:11px;color:#FF8A4C;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.isi{font-size:14px;line-height:1.6;color:#444;white-space:pre-wrap}
+.write-box{background:white;padding:20px;border-radius:20px;box-shadow:0 8px 24px rgba(0,0,0,.08);border:2px dashed #FFC99A;position:sticky;bottom:20px}
   textarea{width:100%;border:none;background:#FFF8E7;border-radius:12px;padding:14px;box-sizing:border-box;font-family:'Quicksand',sans-serif;font-size:14px;resize:none;outline:none}
   button{background:linear-gradient(135deg,#FF8A4C,#FF5C7A);color:white;border:none;padding:14px;border-radius:30px;width:100%;font-weight:700;font-size:14px;margin-top:12px;cursor:pointer}
- .empty{text-align:center;color:#bbb;padding:40px 20px;font-size:14px}
- .count{text-align:center;font-size:12px;color:#999;margin:10px 0}
- .footer{text-align:center;font-size:11px;color:#ccc;margin:30px 0}
- .sender{font-size:12px;font-weight:700;color:#FF5C7A;margin-bottom:8px}
- .reply-preview{font-size:12px;color:#777;background:#FFF8E7;padding:9px 11px;border-radius:10px;margin:8px 0}
- .reply-btn{width:auto;padding:8px 14px;margin-top:12px;font-size:12px}
- .cancel-reply{background:#eee;color:#555;width:auto;padding:7px 12px;margin:0 0 8px}
- .write-box{z-index:2}
+.empty{text-align:center;color:#bbb;padding:40px 20px;font-size:14px}
+.count{text-align:center;font-size:12px;color:#999;margin:10px 0}
+.footer{text-align:center;font-size:11px;color:#ccc;margin:30px 0}
+.sender{font-size:12px;font-weight:700;color:#FF5C7A;margin-bottom:8px}
+.reply-preview{font-size:12px;color:#777;background:#FFF8E7;padding:9px 11px;border-radius:10px;margin:8px 0}
+.reply-btn{width:auto;padding:8px 14px;margin-top:12px;font-size:12px;margin-right:6px}
+.delete-btn{width:auto;padding:8px 14px;margin-top:12px;font-size:12px;background:#FFF0F0;color:#FF5C7A;border:1px solid #FFD0D0}
+.cancel-reply{background:#eee;color:#555;width:auto;padding:7px 12px;margin:0 0 8px}
+.write-box{z-index:2}
   #sender{width:100%;box-sizing:border-box;border:1px solid #ffe0c7;background:#FFF8E7;border-radius:12px;padding:12px;font:inherit;margin-bottom:10px}
 </style>
 </head>
@@ -35,7 +36,7 @@
   <p>nih sayang..aku buatkan surat digital untuk kitaa biar lucu sayang<br>selama hp kamu lagi di rampas</p>
 </div>
 <div class="container">
-  <span class="badge">🔒 Mode Pamer - Orang lain bisa lihat, tapi hanya aa & edee yang bisa kirim</span>
+  <span class="badge">🔒 Mode Pamer - hanya aa & edee yang bisa kirim</span>
   <div class="count" id="count"></div>
   <div id="list"><div style="text-align:center;padding:20px;color:#FF8A4C">lagi ngambil surat edee... 🤍</div></div>
   <div class="write-box">
@@ -44,50 +45,50 @@
     <div id="replying"></div>
     <textarea id="input" rows="4" placeholder="Tulis cerita atau balasan kamu di sini yaa 🤍"></textarea>
     <button id="btn" onclick="tambah()">tap ini kalo kamu mau kirim Surat buat edee 💌</button>
-    <div style="font-size:11px;color:#999;text-align:center;margin-top:8px">hanya aa & edee yang tau passwordnya</div>
   </div>
   <div class="footer">dibuat dengan cintaa • untuk edee 🥰😘</div>
 </div>
 <script>
-// --- PASSWORD UDAH DITUKER YA ---
 const PASS_AA = "sayangedee";
 const PASS_EDEE = "sayangaa";
 const API = "https://api.npoint.io/13ac18bcf38f87367bfa";
 
 let data = [];
 let replyTo = null;
-
 function escapeHTML(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-
 async function load(){
-  try{
-    const r=await fetch(API);
-    const result=await r.json();
-    data=Array.isArray(result)?result:[];
-    render();
-  }catch(e){
-    document.getElementById('list').innerHTML='<div class="empty">Surat belum bisa dimuat. Coba refresh ya 🤍</div>';
-  }
+  try{const r=await fetch(API);const result=await r.json();data=Array.isArray(result)?result:[];render();}
+  catch(e){document.getElementById('list').innerHTML='<div class="empty">Surat belum bisa dimuat. Coba refresh ya 🤍</div>';}
 }
 function render(){
   const list=document.getElementById('list');
   document.getElementById('count').innerText=data.length?`sudah ada ${data.length} surat untuk edee sayang`:'';
-  if(!data.length){list.innerHTML='<div class="empty">Belum ada cerita...<br>Tulis yang pertama yuk! 👇</div>';return;}
+  if(!data.length){list.innerHTML='<div class="empty">Belum ada cerita...</div>';return;}
   const ordered=data.slice().reverse();
   list.innerHTML=ordered.map(d=>{
     const reply=d.replyTo?data.find(x=>String(x.id)===String(d.replyTo)):null;
-    const rp=reply?`<div class="reply-preview">↪ Membalas <b>${escapeHTML(reply.pengirim)}</b>: ${escapeHTML((reply.isi||'').slice(0,120))}</div>`:(d.replyTo?'<div class="reply-preview">↪ Membalas surat sebelumnya</div>':'');
-    return `<div class="card"><div class="date">📅 ${escapeHTML(d.tanggal)} • ${escapeHTML(d.jam)}</div><div class="sender">💌 ${escapeHTML(d.pengirim)}</div>${rp}<div class="isi">${escapeHTML(d.isi)}</div><button class="reply-btn" onclick="balas('${escapeHTML(d.id)}')">↩️ Balas surat ini</button></div>`;
+    const rp=reply?`<div class="reply-preview">↪ Membalas <b>${escapeHTML(reply.pengirim)}</b>: ${escapeHTML((reply.isi||'').slice(0,120))}</div>`:'';
+    return `<div class="card"><div class="date">📅 ${escapeHTML(d.tanggal)} • ${escapeHTML(d.jam)}</div><div class="sender">💌 ${escapeHTML(d.pengirim)}</div>${rp}<div class="isi">${escapeHTML(d.isi)}</div><button class="reply-btn" onclick="balas('${escapeHTML(d.id)}')">↩️ Balas</button><button class="delete-btn" onclick="hapus('${escapeHTML(d.id)}')">🗑️ Hapus</button></div>`;
   }).join('');
 }
-function balas(id){
-  const t=data.find(d=>String(d.id)===String(id));
-  if(!t)return;
-  replyTo=t.id;
-  document.getElementById('replying').innerHTML=`<div class="reply-preview">Membalas <b>${escapeHTML(t.pengirim)}</b>: ${escapeHTML((t.isi||'').slice(0,100))}<br><button class="cancel-reply" onclick="batalBalas()">Batal ✕</button></div>`;
-  document.getElementById('input').focus();
-}
+function balas(id){const t=data.find(d=>String(d.id)===String(id));if(!t)return;replyTo=t.id;document.getElementById('replying').innerHTML=`<div class="reply-preview">Membalas <b>${escapeHTML(t.pengirim)}</b>: ${escapeHTML((t.isi||'').slice(0,100))}<br><button class="cancel-reply" onclick="batalBalas()">Batal ✕</button></div>`;document.getElementById('input').focus();}
 function batalBalas(){replyTo=null;document.getElementById('replying').innerHTML='';}
+
+async function hapus(id){
+  const pass=prompt("Masukin password admin (AA) buat hapus surat ini:");
+  if(pass===null)return;
+  if(pass!==PASS_AA){alert("Password salah! Hanya AA yang bisa hapus");return;}
+  if(!confirm("Yakin mau hapus surat ini sayang? Gak bisa dibalikin loh"))return;
+  // hapus lokal dulu
+  const dataBaru=data.filter(d=>String(d.id)!==String(id));
+  try{
+    const res=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dataBaru)});
+    if(!res.ok)throw new Error('gagal');
+    data=dataBaru;
+    render();
+    alert("Udah kehapus sayang!");
+  }catch(e){alert("Gagal hapus, cek internet ya");}
+}
 
 async function tambah(){
   const isi=document.getElementById('input').value.trim();
@@ -98,18 +99,16 @@ async function tambah(){
   let passBenar=null;
   if(raw.includes('aa')) passBenar=PASS_AA;
   else if(raw.includes('edee')) passBenar=PASS_EDEE;
-  else {alert('Maaf, hanya aa dan edee yang boleh kirim! Orang lain cuma bisa lihat 🤍');return;}
+  else {alert('Maaf, hanya aa dan edee yang boleh kirim!');return;}
   const inputPass=prompt(`Masukkan password ${asli} untuk mengirim:`);
   if(inputPass===null)return;
   if(inputPass!==passBenar){alert('Password salah sayang!');return;}
-
   const btn=document.getElementById('btn');
   btn.disabled=true;btn.innerText='lagi ngirim... 💌';
   const now=new Date();
   const item={id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())),pengirim:asli,tanggal:now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'}),jam:now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}),isi,replyTo};
   try{
-    const latest=await fetch(API);
-    const cur=await latest.json();
+    const latest=await fetch(API);const cur=await latest.json();
     data=Array.isArray(cur)?cur:[];
     data.push(item);
     const saved=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
@@ -118,7 +117,7 @@ async function tambah(){
   }catch(e){alert('Gagal kirim, cek internet ya');await load();}
   finally{btn.disabled=false;btn.innerText='tap ini kalo kamu mau kirim Surat buat edee 💌';}
 }
-load();setInterval(load,5000);
+load();
 </script>
 </body>
 </html>
